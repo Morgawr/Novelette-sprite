@@ -23,3 +23,28 @@
                 (/ (- new-height) 2) ; render in the new coordinate system of the translated canvas
                 new-width new-height) ; stretch to perform uniform scaling
     (.restore ctx))) ; restore context location and rotation to its original place
+
+(s/defn update-sprite
+  "Update the sprite and its animation."
+  [sprite :- sc/Sprite
+   elapsed :- s/Num]
+  (let [update-keyframe
+        (fn [s]
+          (let [frames (get-in s [:data :sequence])
+                index (:keyframe s)
+                elapsed (:elapsed s)
+                loop? (get-in s [:data :loop?])
+                curr-frame (frames index)
+                next-index (if (>= (inc index) (count frames)) 0 (inc index))
+                next-frame (frames next-index)]
+            (cond
+              (and (not loop?) (= 0 next-index))
+              (assoc s :elapsed 0)
+              (>= elapsed (:delay curr-frame))
+              (assoc s
+                     :elapsed (- elapsed (:delay curr-frame))
+                     :keyframe next-index)
+              :else s)))]
+    (-> sprite
+        (update :elapsed (partial + elapsed))
+        (update-keyframe))))

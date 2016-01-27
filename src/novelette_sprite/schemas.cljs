@@ -29,7 +29,6 @@
 (s/defrecord SpriteData
   [spritesheet :- id ; Id of the spritesheet used as reference
    sequence :- [Keyframe] ; Animation sequence
-   timestep :- s/Keyword ; Either :variable or :fixed timestepping
    loop? :- s/Bool ; Does the animation loop once it ends?
    tween? :- s/Bool ; Does the engine need to apply tweening? (TODO not implemented yet)
    ])
