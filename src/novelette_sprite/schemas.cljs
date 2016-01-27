@@ -28,7 +28,7 @@
 
 (s/defrecord SpriteData
   [spritesheet :- id ; Id of the spritesheet used as reference
-   sequence :- [s/Any] ; Animation sequence
+   sequence :- [Keyframe] ; Animation sequence
    timestep :- s/Keyword ; Either :variable or :fixed timestepping
    loop? :- s/Bool ; Does the animation loop once it ends?
    tween? :- s/Bool ; Does the engine need to apply tweening? (TODO not implemented yet)
@@ -39,6 +39,7 @@
    position :- pos
    keyframe :- s/Int ; The current keyframe index in the animation
    elapsed :- s/Int ; how much time has elapsed for the current frame (in ms)
+   scale :- s/Num
+   rotation :- s/Num
    z-index :- s/Int ; depth ordering for rendering, lower = front
-   ; TODO - add scale and rotation
    ])

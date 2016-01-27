@@ -1,7 +1,6 @@
 (ns novelette_sprite.loader
   (:require-macros [schema.core :as s])
   (:require [goog.dom :as dom]
-            [clojure.string]
             [schema.core :as s]
             [novelette_sprite.schemas :as sc]))
 
@@ -42,13 +41,14 @@
   []
   (= (:to-load @data-buffer) (:loaded @data-buffer)))
 
-(s/defn load-images
+(s/defn load-images!
   "Load a list of images into the temporary data buffer."
   [images :- {sc/id s/Str}]
-  (for [[k v] images]
+  (swap! data-buffer assoc :to-load (count images))
+  (doseq [[k v] images]
     (load-image v k)))
 
-(s/defn get-images
+(s/defn get-images!
   "Return the loaded images if loading is complete and reset
   the internal state."
   []
