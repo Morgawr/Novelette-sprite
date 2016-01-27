@@ -56,3 +56,26 @@
     (let [buffer @data-buffer]
       (reset! data-buffer {:to-load 0 :loaded 0 :data {}})
       (:data buffer))))
+
+(s/defn create-sprite
+  "Return a new instance of a sprite with the proper initial parameters."
+  ([model :- sc/SpriteModel
+    position :- sc/pos
+    scale :- s/Num
+    rot :- s/Num
+    z-index :- s/Int]
+   (sc/Sprite. model position 0 0 scale rot z-index))
+  ([model :- sc/SpriteModel
+    position :- sc/pos
+    z-index :- s/Int]
+   (create-sprite model position 1 0 z-index)))
+
+(s/defn create-model
+  "Return a new model for a sprite."
+  ([texture-id :- s/Keyword
+    keyframes :- [sc/Keyframe]
+    looping? :- s/Bool]
+   (sc/SpriteModel. texture-id keyframes looping? false))
+  ([texture-id :- s/Keyword
+    keyframes :- [sc/Keyframe]]
+   (create-model texture-id keyframes true)))

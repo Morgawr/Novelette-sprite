@@ -26,7 +26,7 @@
    delay :- s/Int ; Amount of milliseconds before the next keyframe plays
    ])
 
-(s/defrecord SpriteData
+(s/defrecord SpriteModel
   [spritesheet :- id ; Id of the spritesheet used as reference
    sequence :- [Keyframe] ; Animation sequence
    loop? :- s/Bool ; Does the animation loop once it ends?
@@ -34,7 +34,7 @@
    ])
 
 (s/defrecord Sprite
-  [data :- SpriteData
+  [data :- SpriteModel
    position :- pos
    keyframe :- s/Int ; The current keyframe index in the animation
    elapsed :- s/Int ; how much time has elapsed for the current frame (in ms)
