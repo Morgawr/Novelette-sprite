@@ -38,6 +38,7 @@
                 next-index (if (>= (inc index) (count frames)) 0 (inc index))
                 next-frame (frames next-index)]
             (cond
+              (not (:active? s)) s
               (and (not loop?) (= 0 next-index))
               (assoc s :elapsed 0)
               (>= elapsed (:delay curr-frame))
@@ -48,3 +49,18 @@
     (-> sprite
         (update :elapsed (partial + elapsed))
         (update-keyframe))))
+
+(s/defn stop-sprite
+  "Stop the sprite animation and reset its keyframe to 0."
+  [sprite :- sc/Sprite]
+  (assoc sprite :active? false :keyframe 0 :elapsed 0))
+
+(s/defn pause-sprite
+  "Pause/resume the sprite animation."
+  [sprite :- sc/Sprite]
+  (update sprite :active? not))
+
+(s/defn start-sprite
+  "(Re)-Start the sprite animation."
+  [sprite :- sc/Sprite]
+  (assoc sprite :active? true :keyframe 0 :elapsed 0))

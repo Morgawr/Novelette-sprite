@@ -41,4 +41,5 @@
    scale :- s/Num
    rotation :- s/Num
    z-index :- s/Int ; depth ordering for rendering, lower = front
+   active? :- s/Bool ; Is the animation playing? (it defaults as true on creation)
    ])

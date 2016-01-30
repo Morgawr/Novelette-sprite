@@ -64,7 +64,7 @@
     scale :- s/Num
     rot :- s/Num
     z-index :- s/Int]
-   (sc/Sprite. model position 0 0 scale rot z-index))
+   (sc/Sprite. model position 0 0 scale rot z-index true))
   ([model :- sc/SpriteModel
     position :- sc/pos
     z-index :- s/Int]
