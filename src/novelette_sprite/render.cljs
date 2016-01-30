@@ -1,7 +1,7 @@
-(ns novelette_sprite.render
+(ns novelette-sprite.render
   (:require-macros [schema.core :as s])
   (:require [schema.core :as s]
-            [novelette_sprite.schemas :as sc]))
+            [novelette-sprite.schemas :as sc]))
 
 (s/defn draw-sprite
   "Draw a sprite on the given canvas."

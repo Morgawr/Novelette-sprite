@@ -1,8 +1,8 @@
-(ns novelette_sprite.loader
+(ns novelette-sprite.loader
   (:require-macros [schema.core :as s])
   (:require [goog.dom :as dom]
             [schema.core :as s]
-            [novelette_sprite.schemas :as sc]))
+            [novelette-sprite.schemas :as sc]))
 
 ; This file takes care of loading image resources.
 ; It provides functions and callbacks to load various images and their given

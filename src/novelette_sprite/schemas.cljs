@@ -1,4 +1,4 @@
-(ns novelette_sprite.schemas
+(ns novelette-sprite.schemas
   (:require-macros [schema.core :as s])
   (:require [schema.core :as s]))
 
