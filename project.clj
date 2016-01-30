@@ -1,4 +1,4 @@
-(defproject novelette-sprite "0.1.0-SNAPSHOT"
+(defproject novelette-sprite "0.1.0"
   :description "Clojurescript library for the rendering of animated sprites on canvas."
   :license "MIT License"
   :url "https://github.com/Morgawr/Novelette-sprite"
