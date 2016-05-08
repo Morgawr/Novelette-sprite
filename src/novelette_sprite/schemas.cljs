@@ -1,6 +1,7 @@
 (ns novelette-sprite.schemas
   (:require-macros [schema.core :as s])
-  (:require [schema.core :as s]))
+  (:require [schema.core :as s]
+            [cljs.reader]))
 
 (s/defschema function (s/pred fn? 'fn?))
 
@@ -25,6 +26,8 @@
   [coordinates :- pos ; Rectangle of coordinates in the spritesheet
    delay :- s/Int ; Amount of milliseconds before the next keyframe plays
    ])
+(cljs.reader/register-tag-parser! "novelette-sprite.schemas.Keyframe"
+                                  map->Keyframe)
 
 (s/defrecord SpriteModel
   [spritesheet :- id ; Id of the spritesheet used as reference
@@ -32,6 +35,8 @@
    loop? :- s/Bool ; Does the animation loop once it ends?
    tween? :- s/Bool ; Does the engine need to apply tweening? (TODO not implemented yet)
    ])
+(cljs.reader/register-tag-parser! "novelette-sprite.schemas.SpriteModel"
+                                  map->SpriteModel)
 
 (s/defrecord Sprite
   [data :- SpriteModel
@@ -43,3 +48,5 @@
    z-index :- s/Int ; depth ordering for rendering, lower = front
    active? :- s/Bool ; Is the animation playing? (it defaults as true on creation)
    ])
+(cljs.reader/register-tag-parser! "novelette-sprite.schemas.Sprite"
+                                  map->Sprite)
